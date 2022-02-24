@@ -14,4 +14,12 @@ public class Cheval {
 	public Cheval (String nom, int age) {
 		this(nom, age, 0);
 	}
+	
+	public String toString () {
+		StringBuilder sb = new StringBuilder("\n{\n\t\"nom\": \"" + nom + "\",\n");
+		sb.append("\t\"age\": \"" + age + "\",\n");
+		sb.append("\t\"nbVictoire\": \"" + nbVictoire + "\"\n");
+		sb.append("}");
+		return sb.toString();
+	}
 }

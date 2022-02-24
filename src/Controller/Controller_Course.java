@@ -1,3 +1,5 @@
 package Controller;
 
-public class Controller_Course {}
+public class Controller_Course {
+
+}

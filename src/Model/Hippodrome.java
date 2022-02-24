@@ -2,10 +2,13 @@ package Model;
 
 import jdk.jshell.spi.ExecutionControl;
 
+import java.util.ArrayList;
+
 public class Hippodrome {
 	private static Hippodrome instance = null;
 	
 	private String nom;
+	private ArrayList<Course> courses;
 	
 	
 	public static Hippodrome getInstance (){
