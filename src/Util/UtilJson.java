@@ -5,7 +5,7 @@ import org.json.*;
 public class UtilJson {
 	public static void createStructureJson () {
 		
-		JSONObject obj = new JSONObject();
+		/*JSONObject obj = new JSONObject();
 		JSONObject hipp = new JSONObject();
 		JSONObject courses = new JSONObject();
 		JSONObject chevaux = new JSONObject();
@@ -15,7 +15,7 @@ public class UtilJson {
 		// Objet Hippodrome
 			// Liste Courses
 				// TODO : Liste noms chevaux + vainqueur
-		// Liste Chevaux
+		// Liste Chevaux*/
 	}
 	
 }
