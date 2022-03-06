@@ -26,6 +26,7 @@ public class Cheval {
 		return sb.toString();
 	}
 	
+	// GETTERS / SETTERS
 	public String getNom () {
 		return nom;
 	}
