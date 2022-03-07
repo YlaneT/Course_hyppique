@@ -23,4 +23,13 @@ public class Hippodrome {
 	private void afficherResultatsDixCourses () {
 	
 	}
+	
+	// GETTERS & SETTERS
+	public String getNom () {
+		return nom;
+	}
+	
+	public void setNom (String nom) {
+		this.nom = nom;
+	}
 }
