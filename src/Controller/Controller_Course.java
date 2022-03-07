@@ -1,5 +1,6 @@
 package Controller;
 
+import Dao.Dao_Course;
 import Model.*;
 
 import java.time.LocalDate;
@@ -22,9 +23,25 @@ public class Controller_Course {
 	
 	}
 	
+	public Course getCourseByName(String courseNom) {
+		ArrayList<Course> course = Data.getInstance().getCourses();
+		for (int i = 0; i < course.size(); i++) {
+			if (course.get(i).getNom().equals(courseNom)) {
+				return course.get(i);
+			}
+		}
+		
+		return null;
+	}
+	
 	// UPDATE
 	public void modifierNom () {
 	
+	}
+	
+	public void modifierNom(Course course, String nouveauNomCourse) {
+		Dao_Course.updateCourseNomName(course, nouveauNomCourse);
+		
 	}
 	
 	public void modifierDate () {
@@ -40,7 +57,7 @@ public class Controller_Course {
 	}
 	
 	// DESTROY
-	public void supprimerCourse () {
-	
+	public boolean supprimerCourse(Course course) {
+		return Dao_Course.supprimerCourse(course);
 	}
 }
