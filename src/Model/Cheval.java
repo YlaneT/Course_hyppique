@@ -1,13 +1,11 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class Cheval {
 	private        String            nom;
 	private        int               age;
 	private        int               nbVictoire;
 	
-	private Cheval (String nom, int age, int nbVictoire) {
+	public Cheval (String nom, int age, int nbVictoire) {
 		this.nom = nom.strip();
 		this.age = age;
 		this.nbVictoire = nbVictoire;
@@ -18,6 +16,9 @@ public class Cheval {
 	}
 	
 	public String toString () {
+		if (this == null) {
+			return "null";
+		}
 		StringBuilder sb = new StringBuilder("CHEVAL { ");
 		sb.append("NOM : " + nom);
 		sb.append(",\tAGE : " + age);

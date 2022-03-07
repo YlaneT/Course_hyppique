@@ -1,8 +1,11 @@
 package Util;
 
+import Dao.Dao_Cheval;
 import Model.*;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class UtilCSV {
@@ -35,14 +38,14 @@ public class UtilCSV {
 	
 	// CREATION DES FICHIERS
 	public void creationFichiers () throws FileNotFoundException {
-		while (!chevaux.exists() ){
+		while (!chevaux.exists()) {
 			try {
 				chevaux.createNewFile();
 			} catch (IOException exc) {
 				System.err.println(exc.getMessage());
 			}
 		}
-		while (!courses.exists() ){
+		while (!courses.exists()) {
 			try {
 				courses.createNewFile();
 			} catch (IOException exc) {
@@ -56,7 +59,11 @@ public class UtilCSV {
 		PrintWriter pw_co = new PrintWriter(courses);
 		pw_co.println("NOM, DATE, CHEVAL1, CHEVAL2, CHEVAL3, CHEVAL4, CHEVAL5, CHEVAL6, VAINQUEUR");
 		pw_co.close();
-		
+	}
+	
+	public void chargerData () throws IOException {
+		chargerChevaux();
+		chargerCourses();
 	}
 	
 	// CHEVAL
@@ -69,7 +76,26 @@ public class UtilCSV {
 		pw_ch.close();
 	}
 	
-	public void chargerChevaux () {}
+	private void chargerChevaux () throws IOException {
+		String            delim      = ", ";
+		ArrayList<Cheval> dataCheval = Data.getInstance().getChevaux();
+		if (!chevaux.exists()) {
+			creationFichiers();
+		}
+		else {
+			FileReader     fr = new FileReader(chevaux);
+			BufferedReader br = new BufferedReader(fr);
+			String         cheval;
+			br.readLine(); // passer la ligne d'en-tête
+			while ((cheval = br.readLine()) != null) {
+				String[] params = cheval.split(delim);
+				String   nom    = params[0];
+				int      age    = Integer.parseInt(params[1]);
+				int      victoires    = Integer.parseInt(params[2]);
+				dataCheval.add(new Cheval(nom, age, victoires));
+			}
+		}
+	}
 	
 	// COURSE
 	public void sauvegarderCourses () throws FileNotFoundException {
@@ -87,7 +113,39 @@ public class UtilCSV {
 		pw_ch.close();
 	}
 	
-	public void chargerCourse () {}
+	private void chargerCourses () throws IOException {
+		String            delim      = ", ";
+		ArrayList<Course> dataCourse = Data.getInstance().getCourses();
+		Dao_Cheval        dao_ch     = new Dao_Cheval();
+		if (!courses.exists()) {
+			creationFichiers();
+		}
+		else {
+			FileReader     fr = new FileReader(courses);
+			BufferedReader br = new BufferedReader(fr);
+			String         cheval;
+			br.readLine(); // passer la ligne d'en-tête
+			while ((cheval = br.readLine()) != null) {
+				String[]          params       = cheval.split(delim);
+				String            nom          = params[0];
+				LocalDate         date         = LocalDate.parse(params[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				ArrayList<Cheval> participants = new ArrayList<>();
+				for(int i = 2 ; i < 8 ; i++) {
+					if (params[i].equals("null")) {
+						participants.add(null);
+					}
+					else {
+						participants.add(dao_ch.getChevalByName(params[i]));
+					}
+				}
+				Cheval vainqueur = null;
+				if (!params[8].equals("null")) {
+					vainqueur = dao_ch.getChevalByName(params[8]);
+				}
+				dataCourse.add(new Course(nom, date, participants, vainqueur));
+			}
+		}
+	}
 	
 	// MISE A JOUR
 	public void majCSV () throws IOException {
