@@ -18,10 +18,10 @@ public class TC_Cheval {
 		controller_cheval = new Controller_Cheval();
 	}
 	
-	@Test
-	public void testCreationSixChevaux () {
-		assertEquals(6, controller_cheval.creerSixChevaux().size());
-	}
+//	@Test
+//	public void testCreationSixChevaux () {
+//		assertEquals(6, controller_cheval.creerSixChevaux().size());
+//	}
 	
 	@Test
 	public void creerChevalTest () {

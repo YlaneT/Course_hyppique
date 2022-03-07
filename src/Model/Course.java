@@ -1,15 +1,16 @@
 package Model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
 public class Course {
 	
-	private        String            nom;
-	private        LocalDate         date;
-	private        ArrayList<Cheval> chevaux;
-	private        Cheval            vainqueur;
+	private String            nom;
+	private LocalDate         date;
+	private ArrayList<Cheval> chevaux;
+	private Cheval            vainqueur;
 	
 	public Course (String nom, LocalDate date, ArrayList<Cheval> chevaux, Cheval vainqueur) {
 		this.nom = nom;
@@ -24,14 +25,21 @@ public class Course {
 	}
 	
 	public String toString () {
+		if (this.equals(null)) {
+			return "null";
+		}
 		StringBuilder sb = new StringBuilder("COURSE { ");
 		sb.append("NOM : " + nom);
-		sb.append(",\tDATE : " + date + "\n");
-		sb.append(",\tCHEVAUX : [ ");
+		sb.append(",\tDATE : " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ",\n");
+		sb.append("\tCHEVAUX : [ ");
 		String delim = "";
 		for(Cheval ch : chevaux) {
-			sb.append(delim + ch.getNom() + " ");
-			delim = "/ ";
+			try {
+				sb.append(delim + ch.getNom() + " ");
+				delim = "/ ";
+			} catch (NullPointerException npe) {
+				sb.append(delim + "null ");
+			}
 		}
 		sb.append(" ]\n");
 		sb.append("VAINQUEUR : " + vainqueur);
@@ -69,9 +77,5 @@ public class Course {
 	
 	public void setVainqueur (Cheval vainqueur) {
 		this.vainqueur = vainqueur;
-	}
-	
-	public boolean equals(Course course) {
-		return this.nom.equals(course.nom);
 	}
 }

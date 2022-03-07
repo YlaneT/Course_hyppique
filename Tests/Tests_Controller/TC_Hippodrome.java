@@ -2,13 +2,14 @@ package Tests_Controller;
 
 import Controller.Controller_Course;
 import Controller.Controller_Hippodrome;
+import Model.Course;
 import Model.Data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TC_Hippodrome {
 	Controller_Hippodrome hippodromeController;
@@ -25,17 +26,15 @@ public class TC_Hippodrome {
 	@Test
 	public void creerCourseTestOK () {
 		// GIVEN
-		String    courseNom = "course test blblblbllblblblblbblblblbl";
+		String    courseNom = "helloThere";
 		LocalDate date      = LocalDate.now();
 		
 		// WHEN
 		courseController.creerCourse(courseNom, date);
 		
 		// THEN
-		int nbrCourse = Data.getInstance().getCourses().size();
-		System.out.println(nbrCourse);
-		assertEquals(1, nbrCourse);
-		System.out.println(d.getCourses().get(nbrCourse - 1).getNom());
-		assertEquals(courseNom, d.getCourses().get(nbrCourse - 1).getNom());
+		int    indexCourse = d.getCourses().size() - 1;
+		Course nvleCourse  = d.getCourses().get(indexCourse);
+		assertTrue(d.getCourses().size() == 1 && courseNom.equals(nvleCourse.getNom()) && nvleCourse.getDate().equals(date));
 	}
 }
