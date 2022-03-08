@@ -27,7 +27,7 @@ public class TD_Course {
 		hippodromeDao = new Dao_Hippodrome();
 		courseDao = new Dao_Course();
 		d = Data.getInstance();
-		ArrayList<Course> course = courseDao.getAllCourse();
+		ArrayList<Course> course = courseDao.getAllCourses();
 		assertNotNull(course);
 	}
 	
@@ -66,7 +66,7 @@ public class TD_Course {
 		Course    course = new Course("xhello", date);
 		courseDao = new Dao_Course();
 		
-		courseDao.getAllCourse().add(course);
+		courseDao.getAllCourses().add(course);
 		
 		boolean res = courseDao.supprimerCourse(course);
 		

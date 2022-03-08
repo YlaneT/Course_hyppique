@@ -11,7 +11,6 @@ public class Controller_Cheval {
 	// CREATE
 	public void creerCheval (String nom, int age) {
 		Cheval cheval = new Cheval(nom, age);
-		//calculerVictoires(cheval);
 		dao.creerCheval(cheval);
 	}
 	
@@ -27,12 +26,21 @@ public class Controller_Cheval {
 		}
 	}
 	
+	public int afficherChevauxNumerotes () {
+		ArrayList<Cheval> data_chevaux = dao.getAllCheval();
+		int i;
+		for(i = 1 ; i <= data_chevaux.size() ; i++) {
+			System.out.println(i + ".\t" + data_chevaux.get(i).toString());
+		}
+		return i ;
+	}
+	
 	public Cheval trouverChevalParNom (String nom) {
 		return dao.getChevalByName(nom);
 	}
 	
 	// UPDATE
-	public void modifierCheval () {
+	/*public void modifierCheval () {
 	
 	}
 	
@@ -42,10 +50,14 @@ public class Controller_Cheval {
 	
 	public void modifierAge () {
 	
-	}
+	}*/
 	
 	// DELETE
-	public boolean supprimerCheval (Cheval cheval) {
-		return Dao_Cheval.supprimerCheval(cheval);
+	public void supprimerCheval (Cheval cheval) {
+		Dao_Cheval.supprimerCheval(cheval);
+	}
+	
+	public void supprimerCheval (int index){
+		Dao_Cheval.supprimerCheval(index);
 	}
 }

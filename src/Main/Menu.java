@@ -25,10 +25,14 @@ public class Menu {
 		}
 		System.out.print("\nEntrez la date de la course (jj/mm/aaaa) : ");
 		LocalDate         date    = Utilitaire.saisieDate();
-		ArrayList<Cheval> chevaux = new ArrayList<Cheval>();
+		ArrayList<Cheval> courses = new ArrayList<Cheval>();
 		// TODO : Afficher la liste des chevaux et faire une boucle qui demande lesquels on veut ajouter
 		// TODO : Créer un choix pour créer un cheval et l'ajouter une fois créé
 		contCo.creerCourse(nom, date);
+	}
+	
+	private static ArrayList<Cheval> ajouterChevauxACourse () {
+		return null;
 	}
 	
 	private static void creationCheval () {
@@ -95,8 +99,8 @@ public class Menu {
 		} while (choix < 1 || choix > 4);
 		System.out.println("\n");
 		// TODO : Gérer chaque cas
-		switch(choix){
-		
+		switch (choix) {
+			
 		}
 	}
 	
@@ -131,37 +135,33 @@ public class Menu {
 	// AFFICHAGE
 	private static void afficherHippodrome () {
 		contHi.afficherNom();
+		System.out.println("Dix dernières courses : ");
+		afficherDixDernieresCourses();
 	}
 	
-	private void afficherDixDernieresCourses () {
-		for(Course co : contCo.coursesTriées()) {
+	private static void afficherDixDernieresCourses () {
+		for(Course co : contCo.coursesTriees()) {
 			System.out.println(co.toString());
 		}
 	}
 	
 	// SUPPRESSION
 	private static void suppressionCourse (String nom) {
-		Course course = contCo.getCourseByName(nom);
-		if (course == null) {
-			System.out.println("Cette course n'existe pas");
-		}
-		else {
-			contCo.supprimerCourse(course);
-			System.out.println("Course supprimée");
-		}
+		int limite = contCo.afficherCoursesNumerotes();
+		int num;
+		do {
+			num = Utilitaire.saisieInt("Sélectionnez le numéro du course que vous voulez supprimer");
+		} while (num < 1 || num > limite);
+		contCo.supprimerCourse(num);
 	}
 	
-	// FIXME : Affiche la liste des chevaux et demande d'en sélectionner un à virer
 	private static void suppressionCheval () {
-		String nom = Utilitaire.saisieString("");
-		Cheval cheval = contCh.trouverChevalParNom(nom);
-		if (cheval == null) {
-			System.out.println("Cette cheval n'existe pas");
-		}
-		else {
-			contCh.supprimerCheval(cheval);
-			System.out.println("Cheval supprimée");
-		}
+		int limite = contCh.afficherChevauxNumerotes();
+		int num;
+		do {
+			num = Utilitaire.saisieInt("Sélectionnez le numéro du cheval que vous voulez supprimer");
+		} while (num < 1 || num > limite);
+		contCh.supprimerCheval(num);
 	}
 	
 	// MODIFICATION

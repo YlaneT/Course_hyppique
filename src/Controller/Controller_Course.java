@@ -36,8 +36,8 @@ public class Controller_Course {
 		return null;
 	}
 	
-	public ArrayList<Course> coursesTriées () {
-		dao.getAllCourse().sort(Comparator.comparing(Course::getDate));
+	public ArrayList<Course> coursesTriees () {
+		dao.getAllCourses().sort(Comparator.comparing(Course::getDate));
 		ArrayList<Course> data_courses = Data.getInstance().getCourses();
 		ArrayList<Course> dixCourses = new ArrayList<>();
 		for(int i = 0 ; i < Math.min(10, data_courses.size()); i++) {
@@ -71,5 +71,17 @@ public class Controller_Course {
 	// DESTROY
 	public boolean supprimerCourse(Course course) {
 		return Dao_Course.supprimerCourse(course);
+	}
+	public void supprimerCourse (int index){
+		Dao_Course.supprimerCourse(index);
+	}
+	
+	public int afficherCoursesNumerotes () {
+		ArrayList<Course> data_courses = dao.getAllCourses();
+		int i;
+		for(i = 1 ; i <= data_courses.size() ; i++) {
+			System.out.println(i + ".\t" + data_courses.get(i).toString());
+		}
+		return i ;
 	}
 }
