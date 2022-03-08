@@ -46,7 +46,7 @@ public class Menu {
 	//	}
 	
 	// MENU PRINCIPAL
-	public void menu_principal () throws IOException {
+	public static int menu_principal () throws IOException {
 		// FIXME
 		int info = type_info();
 		switch (info) {
@@ -61,32 +61,14 @@ public class Menu {
 				break;
 			case 4:
 				UtilCSV.getInstance().majCSV();
-				// TODO : Fin de boucle
-		}
-		// TODO : Boucle
-		
-		
-		/*switch (Utilitaire.saisieInt("Entrez une valeur entre 1 et 3")) {
-			case 1:
-				creationCourse();
-				break;
-			case 2:
-				creationCheval();
-				break;
-			case 3:
-				ajoutCheval();
-				break;
-			case 4:
-				suppressionCourse();
-				break;
-			case 5:
-				suppressionCheval();
 				break;
 			default:
-		}*/
+				System.out.println("Entrez une valeur entre 1 et 4 : ");
+		}
+		return info;
 	}
 	
-	private int type_info () {
+	private static int type_info () {
 		System.out.println("=== A quel type de données voulez-vous accéder ? ===");
 		System.out.println("1.\tHippodrome");
 		System.out.println("2.\tCourses");
@@ -101,24 +83,28 @@ public class Menu {
 	}
 	
 	// CRUD CHEVAL / COURSE
-	private void crudCourse () {
+	private static void crudCourse () {
 		System.out.println("=== Que voulez-vous faire ? ===");
 		System.out.println("1.\tAjouter une course");
 		System.out.println("2.\tAfficher les courses");
-		System.out.println("3.\tModifier une course"); // TODO : Gérer chaque variable
+		System.out.println("3.\tModifier une course");
 		System.out.println("4.\tSupprimer une course");
-		int choice;
+		int choix;
 		do {
-			choice = Utilitaire.saisieInt("Entrez une valeur entre 1 et 4 : ");
-		} while (choice < 1 || choice > 4);
+			choix = Utilitaire.saisieInt("Entrez une valeur entre 1 et 4 : ");
+		} while (choix < 1 || choix > 4);
 		System.out.println("\n");
+		// TODO : Gérer chaque cas
+		switch(choix){
+		
+		}
 	}
 	
-	private void crudCheval () {
+	private static void crudCheval () {
 		System.out.println("=== Que voulez-vous faire ? ===");
 		System.out.println("1.\tAjouter un cheval");
 		System.out.println("2.\tAfficher les chevaux");
-		System.out.println("3.\tModifier un cheval"); // TODO : Gérer chaque variable
+		System.out.println("3.\tModifier un cheval");
 		System.out.println("4.\tSupprimer un cheval");
 		int choix;
 		do {
@@ -131,20 +117,20 @@ public class Menu {
 				creationCheval();
 				break;
 			case 2:
+				contCh.afficherChevaux();
 				break;
 			case 3:
-				crudCheval();
+				// TODO
+				System.err.println("PAS IMPLEMENTE");
 				break;
+			case 4:
+				suppressionCheval();
 		}
 	}
 	
 	// AFFICHAGE
-	private void afficherHippodrome () {
+	private static void afficherHippodrome () {
 		contHi.afficherNom();
-	}
-	
-	private void afficherChevaux () {
-		contCh.afficherChevaux();
 	}
 	
 	private void afficherDixDernieresCourses () {
@@ -165,7 +151,9 @@ public class Menu {
 		}
 	}
 	
-	private static void suppressionCheval (String nom) {
+	// FIXME : Affiche la liste des chevaux et demande d'en sélectionner un à virer
+	private static void suppressionCheval () {
+		String nom = Utilitaire.saisieString("");
 		Cheval cheval = contCh.trouverChevalParNom(nom);
 		if (cheval == null) {
 			System.out.println("Cette cheval n'existe pas");

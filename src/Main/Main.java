@@ -1,6 +1,7 @@
 package Main;
 
-import Model.*;
+import Model.Data;
+import Model.Hippodrome;
 import Util.UtilCSV;
 
 import java.io.IOException;
@@ -8,14 +9,11 @@ import java.io.IOException;
 public class Main {
 	
 	public static void main (String[] args) throws IOException {
-		Hippodrome hippodrome = Hippodrome.getInstance();
-		Data       data       = Data.getInstance();
-		Cheval     c          = new Cheval("Mon grand poney", 2);
-		
-		UtilCSV util = UtilCSV.getInstance();
-		util.chargerData();
-		
-		System.out.println(data.getChevaux());
-		System.out.println(data.getCourses());
+		Hippodrome.getInstance();
+		Data.getInstance();
+		UtilCSV    csv        = UtilCSV.getInstance();
+		csv.chargerData();
+		while(Menu.menu_principal() != 4);
+		csv.majCSV();
 	}
 }
