@@ -32,7 +32,7 @@ public class TD_Cheval {
 	public void createChevalTestOK () {
 		String chevalNom = "gtere";
 		chevalDao = new Dao_Cheval();
-		assertTrue(chevalDao.creerCheval(chevalNom, 12));
+		assertTrue(chevalDao.creerCheval(new Cheval(chevalNom, 12)));
 	}
 	
 	@Test

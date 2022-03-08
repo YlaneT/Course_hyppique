@@ -11,7 +11,8 @@ public class Controller_Cheval {
 	// CREATE
 	public void creerCheval (String nom, int age) {
 		Cheval cheval = new Cheval(nom, age);
-		calculerVictoires(cheval);
+		//calculerVictoires(cheval);
+		dao.creerCheval(cheval);
 	}
 	
 	public void calculerVictoires (Cheval cheval) {
