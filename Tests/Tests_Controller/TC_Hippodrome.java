@@ -13,83 +13,82 @@ import static org.junit.Assert.*;
 
 public class TC_Hippodrome {
 	Controller_Hippodrome hippodromeController;
-	Controller_Course     courseController;
-	Data                  d;
-	
+	Controller_Course courseController;
+	Data d;
+
 	@BeforeEach
-	void init () {
+	void init() {
 		d = Data.getInstance();
 		hippodromeController = new Controller_Hippodrome();
 		courseController = new Controller_Course();
 	}
-	
+
 	@Test
-	public void creerCourseTestOK () {
+	public void creerCourseTestOK() {
 		// GIVEN
-		String    courseNom = "helloThere";
-		LocalDate date      = LocalDate.now();
-		
+		String courseNom = "helloThere";
+		LocalDate date = LocalDate.now();
+
 		// WHEN
 		courseController.creerCourse(courseNom, date);
-		
+
 		// THEN
-		int    indexCourse = d.getCourses().size() - 1;
-		Course nvleCourse  = d.getCourses().get(indexCourse);
-		assertTrue(d.getCourses().size() == 1 &&
-			courseNom.equalsIgnoreCase(nvleCourse.getNom()) &&
-			nvleCourse.getDate().equals(date));
+		int indexCourse = d.getCourses().size() - 1;
+		Course nvleCourse = d.getCourses().get(indexCourse);
+		assertTrue(d.getCourses().size() == 1 && courseNom.equalsIgnoreCase(nvleCourse.getNom())
+				&& nvleCourse.getDate().equals(date));
 	}
-	
+
 	@Test
-	public void updateNomCourseTestOK () {
-		String    nouveauNomCourse = "helloTHere";
-		LocalDate date             = LocalDate.now();
-		Course    course           = new Course("anthony", date);
+	public void updateNomCourseTestOK() {
+		String nouveauNomCourse = "helloTHere";
+		LocalDate date = LocalDate.now();
+		Course course = new Course("anthony", date);
 		d.getCourses().add(course);
-		
+
 		courseController.modifierNom(course, nouveauNomCourse);
 		int nbrcourse = d.getCourses().size();
 		assertEquals(1, nbrcourse);
 		assertEquals(nouveauNomCourse, d.getCourses().get(nbrcourse - 1).getNom());
 	}
-	
+
 	@Test
-	public void deleteCourseTestOK () {
-		LocalDate date   = LocalDate.now();
-		Course    course = new Course("helloTHere", date);
+	public void deleteCourseTestOK() {
+		LocalDate date = LocalDate.now();
+		Course course = new Course("helloTHere", date);
 		d.getCourses().add(course);
-		
-		boolean res       = courseController.supprimerCourse(course);
-		int     nbrCourse = d.getCourses().size();
-		//assertEquals(0, nbrCourse);
+
+		boolean res = courseController.supprimerCourse(course);
+		int nbrCourse = d.getCourses().size();
+		// assertEquals(0, nbrCourse);
 		assertTrue(res);
 	}
-	
+
 	@Test
-	public void deleteCourseNonExistantTestKO () {
-		LocalDate date   = LocalDate.now();
-		Course    course = new Course("helloTHere", date);
-		
-		boolean result    = courseController.supprimerCourse(course);
-		int     nbrCourse = d.getCourses().size();
-		//assertEquals(0, nbrCourse);
+	public void deleteCourseNonExistantTestKO() {
+		LocalDate date = LocalDate.now();
+		Course course = new Course("helloTHere", date);
+
+		boolean result = courseController.supprimerCourse(course);
+		int nbrCourse = d.getCourses().size();
+		// assertEquals(0, nbrCourse);
 		assertFalse(result);
 	}
-	
+
 	@Test
-	public void getCourseByNameFirstOK () {
-		String    courseNom = "helloTHere";
-		LocalDate date      = LocalDate.now();
-		Course    course    = new Course(courseNom, date);
+	public void getCourseByNameFirstOK() {
+		String courseNom = "helloTHere";
+		LocalDate date = LocalDate.now();
+		Course course = new Course(courseNom, date);
 		d.getCourses().add(course);
-		
+
 		Course result = courseController.getCourseByName(courseNom);
 		assertNotNull(result);
 		assertEquals(courseNom, result.getNom());
 	}
-	
+
 	@Test
-	public void getCourseByNameFirstNotExist () {
+	public void getCourseByNameFirstNotExist() {
 		assertNull(courseController.getCourseByName("helloTHere2"));
 	}
 }
