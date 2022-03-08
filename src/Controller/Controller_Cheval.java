@@ -13,8 +13,8 @@ public class Controller_Cheval {
 	}
 	
 	// READ
-	public void afficherChevaux () {
-	
+	public ArrayList<Cheval> getAllChevaux() {
+		return Data.getInstance().getChevaux();
 	}
 	
 	// UPDATE
@@ -30,4 +30,5 @@ public class Controller_Cheval {
 	public void supprimerCheval () {
 	
 	}
+
 }
