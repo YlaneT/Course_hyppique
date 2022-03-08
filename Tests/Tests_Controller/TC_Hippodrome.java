@@ -7,7 +7,9 @@ import Model.Data;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -26,6 +28,7 @@ public class TC_Hippodrome {
 	@Test
 	public void creerCourseTestOK() {
 		// GIVEN
+		d.setCourses(new ArrayList<>());
 		String courseNom = "helloThere";
 		LocalDate date = LocalDate.now();
 
@@ -41,6 +44,7 @@ public class TC_Hippodrome {
 
 	@Test
 	public void updateNomCourseTestOK() {
+		d.setCourses(new ArrayList<>());
 		String nouveauNomCourse = "helloTHere";
 		LocalDate date = LocalDate.now();
 		Course course = new Course("anthony", date);
@@ -77,6 +81,7 @@ public class TC_Hippodrome {
 
 	@Test
 	public void getCourseByNameFirstOK() {
+		d.setCourses(new ArrayList<Course>());
 		String courseNom = "helloTHere";
 		LocalDate date = LocalDate.now();
 		Course course = new Course(courseNom, date);
