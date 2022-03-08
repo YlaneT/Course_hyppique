@@ -9,6 +9,12 @@ public class Dao_Cheval {
 		return Data.getInstance().getChevaux().remove(cheval);
 	}
 	
+	public static void supprimerCheval (int index) {
+		ArrayList<Cheval> data_chevaux     = Data.getInstance().getChevaux();
+		Cheval            chevalASupprimer = data_chevaux.get(index-1);
+		data_chevaux.remove(chevalASupprimer);
+	}
+	
 	// CREATE
 	public boolean creerCheval (Cheval cheval) {
 		return Data.getInstance().getChevaux().add(cheval);
@@ -22,7 +28,7 @@ public class Dao_Cheval {
 	public Cheval getChevalByName (String chevalNom) {
 		ArrayList<Cheval> chevalList = Data.getInstance().getChevaux();
 		for(int i = 0 ; i < chevalList.size() ; i++) {
-			if (chevalList.get(i).getNom().equalsIgnoreCase(chevalNom)) {
+			if (chevalList.get(i).getNom().strip().equalsIgnoreCase(chevalNom.strip())) {
 				return chevalList.get(i);
 			}
 		}
