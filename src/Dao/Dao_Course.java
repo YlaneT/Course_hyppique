@@ -38,7 +38,7 @@ public class Dao_Course {
 	public Course getCourseByName(String courseNom) {
 		ArrayList<Course> courseList = Data.getInstance().getCourses();
 		for(Course course : courseList) {
-			if (course.getNom().equals(courseNom)) {
+			if (course.getNom().equalsIgnoreCase(courseNom)) {
 				return course;
 			}
 		}

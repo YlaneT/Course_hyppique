@@ -35,7 +35,9 @@ public class TC_Hippodrome {
 		// THEN
 		int    indexCourse = d.getCourses().size() - 1;
 		Course nvleCourse  = d.getCourses().get(indexCourse);
-		assertTrue(d.getCourses().size() == 1 && courseNom.equals(nvleCourse.getNom()) && nvleCourse.getDate().equals(date));
+		assertTrue(d.getCourses().size() == 1 &&
+			courseNom.equalsIgnoreCase(nvleCourse.getNom()) &&
+			nvleCourse.getDate().equals(date));
 	}
 	
 	@Test

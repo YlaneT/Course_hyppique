@@ -131,7 +131,7 @@ public class UtilCSV {
 				LocalDate         date         = LocalDate.parse(params[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 				ArrayList<Cheval> participants = new ArrayList<>();
 				for(int i = 2 ; i < 8 ; i++) {
-					if (params[i].equals("null")) {
+					if (params[i].equalsIgnoreCase("null")) {
 						participants.add(null);
 					}
 					else {
@@ -139,7 +139,7 @@ public class UtilCSV {
 					}
 				}
 				Cheval vainqueur = null;
-				if (!params[8].equals("null")) {
+				if (!params[8].equalsIgnoreCase("null")) {
 					vainqueur = dao_ch.getChevalByName(params[8]);
 				}
 				dataCourse.add(new Course(nom, date, participants, vainqueur));

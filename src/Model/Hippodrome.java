@@ -32,4 +32,8 @@ public class Hippodrome {
 	public void setNom (String nom) {
 		this.nom = nom;
 	}
+	
+	public String toString () {
+		return "HIPPODROME { NOM : " + getNom() + " }";
+	}
 }
