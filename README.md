@@ -2,8 +2,6 @@
 
 TURAM-ULIEN Ylane & RAJARATNAM Sarujan
 
-----
-
 ## Consigne
 
 - Outil de gestion de courses hippiques
@@ -31,7 +29,6 @@ TURAM-ULIEN Ylane & RAJARATNAM Sarujan
 - Chaque test doit passer.
 
 - Un fichier readme expliquera succinctement la stratégie de tests.
-
 
 ## Procédure de développement
 
