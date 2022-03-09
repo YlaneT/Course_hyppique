@@ -23,8 +23,9 @@ public class Menu {
 			System.out.println("Choisissez un autre nom");
 			nom = Utilitaire.saisieString("Donnez un nom à votre course : ");
 		}
-		LocalDate         date    = Utilitaire.saisieDate("\nEntrez la date de la course (jj/mm/aaaa) : ");
+		LocalDate         date    = LocalDate.now();//Utilitaire.saisieDate("\nEntrez la date de la course (jj/mm/aaaa) : ");
 		ArrayList<Cheval> chevauxAAjouter = choixChevauxAAjouter();
+
 		System.out.println("\nVoici les chevaux de votre course : ");
 		for (int i = 0; i< chevauxAAjouter.size(); i++){
 			System.out.println(i+ ".\t" +chevauxAAjouter.get(i));
@@ -42,7 +43,7 @@ public class Menu {
 			
 			int num;
 			do {
-				num = Utilitaire.saisieInt("Sélectionnez le numéro du cheval que vous voulez supprimer");
+				num = Utilitaire.saisieInt("Sélectionnez le numéro du cheval que vous voulez ajouter");
 			} while (num < 1 || num > limite);
 			Cheval ajoute = contCh.trouverChevalParIndex(num-1);
 			chevauxAAjouter.add(ajoute);

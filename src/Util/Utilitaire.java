@@ -5,6 +5,7 @@ import Model.Course;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -39,7 +40,44 @@ public class Utilitaire {
 	}
 	
 	public static LocalDate saisieDate (String message) {
-		return LocalDate.parse(saisieString(message),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//		Scanner scan = new Scanner(System.in);
+//		String c = scan.next();
+//		System.out.println(c);
+//		ZonedDateTime d = ZonedDateTime.parse(c);
+//		System.out.println(d);
+//
+////		String[] words = c.split("-");
+////        for (String word : words) {
+////            System.out.println(word);
+////          
+////        }
+//		return d;
+		
+		LocalDate localDate = LocalDate.now();
+		return localDate;
+        
+     // create a formatter
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM uuuu");
+// 
+//        // create a LocalDate object and
+//        LocalDate lt
+//            = LocalDate.parse(c, formatter);
+// 
+//        // print result
+//        System.out.println("LocalDate : "
+//                           + lt.toString());
+		//System.out.print(scan);
+//	    System.out.print("Enter a date [dd. MMM. yyyy]: ");
+	    //String str = scan.nextLine();
+//	    System.out.println(str);
+	    //System.out.print(LocalDate.parse(scan.next()));
+	    //LocalDate dtf = LocalDate.of("dd. MMM. yyyy");
+	    //return LocalDate.parse(str, dtf);
+	    //return lt;
+		
+		
+		
+		//return LocalDate.parse(saisieString(message), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	
 	public ArrayList<Cheval> creerSixChevaux () { // FIXME

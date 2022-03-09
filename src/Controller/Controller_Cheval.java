@@ -29,7 +29,7 @@ public class Controller_Cheval {
 	public int afficherChevauxNumerotes () {
 		ArrayList<Cheval> data_chevaux = dao.getAllCheval();
 		int i;
-		for(i = 1 ; i <= data_chevaux.size() ; i++) {
+		for(i = 1 ; i < data_chevaux.size() ; i++) {
 			System.out.println(i + ".\t" + data_chevaux.get(i).toString());
 		}
 		return i ;
