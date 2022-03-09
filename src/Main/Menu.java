@@ -112,7 +112,6 @@ public class Menu {
 			choix = Utilitaire.saisieInt("Entrez une valeur entre 1 et 4 : ");
 		} while (choix < 1 || choix > 4);
 		System.out.println("\n");
-		// TODO : Gérer chaque cas
 		switch (choix) {
 			case 1:
 				creationCourse();

@@ -21,9 +21,7 @@ public class Utilitaire {
 		}
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\n");
-		String input = sc.next();
-		sc.close();
-		return input;
+		return sc.next();
 	}
 	
 	public static int saisieInt (String message) {
@@ -32,9 +30,7 @@ public class Utilitaire {
 		}
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\n");
-		int input = sc.nextInt();
-		sc.close();
-		return input;
+		return sc.nextInt();
 	}
 	
 	public static int boundRandint (int min, int max) {

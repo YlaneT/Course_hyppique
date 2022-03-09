@@ -12,6 +12,7 @@ public class Main {
 		Hippodrome.getInstance();
 		Data.getInstance();
 		UtilCSV    csv        = UtilCSV.getInstance();
+		csv.creationFichiers();
 		csv.chargerData();
 		while(Menu.menu_principal() != 4);
 		csv.majCSV();

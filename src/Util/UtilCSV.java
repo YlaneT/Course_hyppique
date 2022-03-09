@@ -44,6 +44,9 @@ public class UtilCSV {
 			} catch (IOException exc) {
 				System.err.println(exc.getMessage());
 			}
+			PrintWriter pw_ch = new PrintWriter(chevaux);
+			pw_ch.println("NOM, AGE, VICTOIRES");
+			pw_ch.close();
 		}
 		while (!courses.exists()) {
 			try {
@@ -51,14 +54,10 @@ public class UtilCSV {
 			} catch (IOException exc) {
 				System.err.println(exc.getMessage());
 			}
+			PrintWriter pw_co = new PrintWriter(courses);
+			pw_co.println("NOM, DATE, CHEVAL1, CHEVAL2, CHEVAL3, CHEVAL4, CHEVAL5, CHEVAL6, VAINQUEUR");
+			pw_co.close();
 		}
-		PrintWriter pw_ch = new PrintWriter(chevaux);
-		pw_ch.println("NOM, AGE, VICTOIRES");
-		pw_ch.close();
-		
-		PrintWriter pw_co = new PrintWriter(courses);
-		pw_co.println("NOM, DATE, CHEVAL1, CHEVAL2, CHEVAL3, CHEVAL4, CHEVAL5, CHEVAL6, VAINQUEUR");
-		pw_co.close();
 	}
 	
 	public void chargerData () throws IOException {
@@ -70,8 +69,9 @@ public class UtilCSV {
 	public void sauvegarderChevaux () throws FileNotFoundException {
 		PrintWriter       pw_ch        = new PrintWriter(getInstance().getChevaux());
 		ArrayList<Cheval> data_chevaux = Data.getInstance().getChevaux();
+		pw_ch.println("NOM, AGE, VICTOIRES");
 		for(Cheval ch : data_chevaux) {
-			pw_ch.println(String.format("%s, %d, %d", ch.getNom(), ch.getAge(), ch.getNbVictoire()));
+			pw_ch.append(String.format("%s, %d, %d", ch.getNom(), ch.getAge(), ch.getNbVictoire()));
 		}
 		pw_ch.close();
 	}
@@ -100,8 +100,9 @@ public class UtilCSV {
 	
 	// COURSE
 	public void sauvegarderCourses () throws FileNotFoundException {
-		PrintWriter       pw_ch        = new PrintWriter(getInstance().getCourses());
+		PrintWriter       pw_co        = new PrintWriter(getInstance().getCourses());
 		ArrayList<Course> data_courses = Data.getInstance().getCourses();
+		pw_co.println("NOM, DATE, CHEVAL1, CHEVAL2, CHEVAL3, CHEVAL4, CHEVAL5, CHEVAL6, VAINQUEUR");
 		for(Course co : data_courses) {
 			StringBuilder sb = new StringBuilder(co.getNom()).append(", ");
 			sb.append(co.getDate().toString()).append(", ");
@@ -109,9 +110,9 @@ public class UtilCSV {
 				sb.append(ch.getNom()).append(", ");
 			}
 			sb.append(co.getVainqueur().getNom());
-			pw_ch.println(sb.toString());
+			pw_co.append(sb.toString());
 		}
-		pw_ch.close();
+		pw_co.close();
 	}
 	
 	private void chargerCourses () throws IOException {
