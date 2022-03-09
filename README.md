@@ -44,3 +44,5 @@ Pour sauvegarder les parties, nous avons mis en place un fichier CSV où nous av
 L'avantage de tester le code à chaque fois que nous avançons le code permet de remettre en cause les différentes fonctionnalités afin de vérifier l'étanchéité du code, si elle respecte bien les conditions prédéfinies mais aussi de vérifier le bon fonctionnement du code.
 
 ## Coverage
+
+![alt text](https://github.com/YlaneT/Course_hyppique/blob/master/coverage.png?raw=true)
