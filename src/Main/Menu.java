@@ -23,16 +23,33 @@ public class Menu {
 			System.out.println("Choisissez un autre nom");
 			nom = Utilitaire.saisieString("Donnez un nom à votre course : ");
 		}
-		System.out.print("\nEntrez la date de la course (jj/mm/aaaa) : ");
-		LocalDate         date    = Utilitaire.saisieDate();
-		ArrayList<Cheval> courses = new ArrayList<Cheval>();
-		// TODO : Afficher la liste des chevaux et faire une boucle qui demande lesquels on veut ajouter
+		LocalDate         date    = Utilitaire.saisieDate("\nEntrez la date de la course (jj/mm/aaaa) : ");
+		ArrayList<Cheval> chevauxAAjouter = choixChevauxAAjouter();
+		System.out.println("\nVoici les chevaux de votre course : ");
+		for (int i = 0; i< chevauxAAjouter.size(); i++){
+			System.out.println(i+ ".\t" +chevauxAAjouter.get(i));
+		}
+		int indexVainqueur = Utilitaire.saisieInt("Lequel a gagné ? ");
 		// TODO : Créer un choix pour créer un cheval et l'ajouter une fois créé
-		contCo.creerCourse(nom, date);
+		contCo.creerCourse(nom, date, chevauxAAjouter, chevauxAAjouter.get(indexVainqueur));
 	}
 	
-	private static ArrayList<Cheval> ajouterChevauxACourse () {
-		return null;
+	private static ArrayList<Cheval> choixChevauxAAjouter () {
+		ArrayList<Cheval> chevauxAAjouter = new ArrayList<Cheval>();
+		int limite = contCh.afficherChevauxNumerotes();
+		for( int i = 0 ; i<limite; i++){
+			if (chevauxAAjouter.size() < 6){
+			
+			int num;
+			do {
+				num = Utilitaire.saisieInt("Sélectionnez le numéro du cheval que vous voulez supprimer");
+			} while (num < 1 || num > limite);
+			Cheval ajoute = contCh.trouverChevalParIndex(num-1);
+			chevauxAAjouter.add(ajoute);
+			System.out.println(ajoute.getNom() + " a été ajouté à la course.");
+		}
+		}
+		return chevauxAAjouter;
 	}
 	
 	private static void creationCheval () {
@@ -45,9 +62,6 @@ public class Menu {
 		int age = Utilitaire.saisieInt("Donnez l'age du cheval : ");
 		contCh.creerCheval(nom, age);
 	}
-	
-	//	private static void ajoutCheval () {
-	//	}
 	
 	// MENU PRINCIPAL
 	public static int menu_principal () throws IOException {
@@ -80,7 +94,7 @@ public class Menu {
 		System.out.println("4.\tSauvegarder et quitter");
 		int choice = 0;
 		do {
-			choice = Utilitaire.saisieInt("Entrez une valeur entre 1 et 3 : ");
+			choice = Utilitaire.saisieInt("Entrez une valeur entre 1 et 4 : ");
 		} while (choice < 1 || choice > 4);
 		System.out.println("\n");
 		return choice;
@@ -100,7 +114,19 @@ public class Menu {
 		System.out.println("\n");
 		// TODO : Gérer chaque cas
 		switch (choix) {
-			
+			case 1:
+				creationCourse();
+				break;
+			case 2:
+				afficherDixDernieresCourses();
+				break;
+			case 3:
+				// TODO
+				System.err.println("PAS IMPLEMENTE");
+				break;
+			case 4:
+				suppressionCourse();
+				break;
 		}
 	}
 	
@@ -129,6 +155,7 @@ public class Menu {
 				break;
 			case 4:
 				suppressionCheval();
+				break;
 		}
 	}
 	
@@ -146,7 +173,7 @@ public class Menu {
 	}
 	
 	// SUPPRESSION
-	private static void suppressionCourse (String nom) {
+	private static void suppressionCourse () {
 		int limite = contCo.afficherCoursesNumerotes();
 		int num;
 		do {

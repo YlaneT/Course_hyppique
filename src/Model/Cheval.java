@@ -16,7 +16,7 @@ public class Cheval {
 	}
 	
 	public String toString () {
-		if (this == null) {
+		if (this.equals(null)) {
 			return "null";
 		}
 		StringBuilder sb = new StringBuilder("CHEVAL { ");

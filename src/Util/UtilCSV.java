@@ -94,6 +94,7 @@ public class UtilCSV {
 				int      victoires    = Integer.parseInt(params[2]);
 				dataCheval.add(new Cheval(nom, age, victoires));
 			}
+			br.close();
 		}
 	}
 	
@@ -144,6 +145,7 @@ public class UtilCSV {
 				}
 				dataCourse.add(new Course(nom, date, participants, vainqueur));
 			}
+			br.close();
 		}
 	}
 	

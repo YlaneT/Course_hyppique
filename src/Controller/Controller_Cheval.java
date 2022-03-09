@@ -38,6 +38,14 @@ public class Controller_Cheval {
 	public Cheval trouverChevalParNom (String nom) {
 		return dao.getChevalByName(nom);
 	}
+
+	public Cheval trouverChevalParIndex (int index) {
+		return dao.getChevalByIndex(index);
+	}
+
+	public ArrayList<Cheval> recupChevaux(){
+		return dao.getAllCheval();
+	}
 	
 	// UPDATE
 	/*public void modifierCheval () {

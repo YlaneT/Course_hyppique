@@ -34,6 +34,11 @@ public class Dao_Cheval {
 		}
 		return null;
 	}
+
+	public Cheval getChevalByIndex (int index) {
+		ArrayList<Cheval> chevalList = Data.getInstance().getChevaux();
+		return chevalList.get(index);
+	}
 	
 	// UPDATE
 	public void updateCheval (Cheval cheval, String nouveauNom, int nouveauAge) {

@@ -1,6 +1,5 @@
 package Controller;
 
-import Dao.Dao_Cheval;
 import Dao.Dao_Course;
 import Model.*;
 

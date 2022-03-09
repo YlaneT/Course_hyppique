@@ -5,12 +5,12 @@ import Model.Course;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class Utilitaire {
 	
-	public static ArrayList<Course> creationCourses () throws ExecutionControl.NotImplementedException {
+	public static ArrayList<Course> creationSixCourses () throws ExecutionControl.NotImplementedException {
 		
 		throw new ExecutionControl.NotImplementedException("");
 	}
@@ -21,7 +21,9 @@ public class Utilitaire {
 		}
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\n");
-		return sc.next();
+		String input = sc.next();
+		sc.close();
+		return input;
 	}
 	
 	public static int saisieInt (String message) {
@@ -30,7 +32,9 @@ public class Utilitaire {
 		}
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\n");
-		return sc.nextInt();
+		int input = sc.nextInt();
+		sc.close();
+		return input;
 	}
 	
 	public static int boundRandint (int min, int max) {
@@ -38,16 +42,8 @@ public class Utilitaire {
 		return r.nextInt(max - min) + min;
 	}
 	
-	public static LocalDate saisieDate () { // FIXME : Utiliser LocalDate
-		Scanner sc = new Scanner(System.in);
-		String  date = sc.next(Pattern.compile("[0-3][0-9]/[0-1]?[0-9]/[0-9]{4}"));
-		// See DateFormat, parse(String)
-		try {
-			throw new ExecutionControl.NotImplementedException("");
-		} catch (ExecutionControl.NotImplementedException e) {
-			System.err.println("Not implemented");
-		}
-		return null;
+	public static LocalDate saisieDate (String message) {
+		return LocalDate.parse(saisieString(message),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	
 	public ArrayList<Cheval> creerSixChevaux () { // FIXME
