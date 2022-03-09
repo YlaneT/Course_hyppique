@@ -23,7 +23,7 @@ public class Menu {
 			System.out.println("Choisissez un autre nom");
 			nom = Utilitaire.saisieString("Donnez un nom à votre course : ");
 		}
-		LocalDate         date    = LocalDate.now();//Utilitaire.saisieDate("\nEntrez la date de la course (jj/mm/aaaa) : ");
+		LocalDate         date    = Utilitaire.saisieDate();//LocalDate.now();//Utilitaire.saisieDate("\nEntrez la date de la course (jj/mm/aaaa) : ");
 		ArrayList<Cheval> chevauxAAjouter = choixChevauxAAjouter();
 
 		System.out.println("\nVoici les chevaux de votre course : ");
